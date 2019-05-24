@@ -16,12 +16,12 @@ function fish_prompt
 
     # c0 to c4 progress from dark to bright
     # ce is the error colour
-    set -g c0 (set_color 005284)
-    set -g c1 (set_color 0075cd)
-    set -g c2 (set_color 009eff)
-    set -g c3 (set_color 6dc7ff)
-    set -g c4 (set_color ffffff)
-    set -g ce (set_color $fish_color_error)
+    set -g c0 (set_color 586e75)
+    set -g c1 (set_color 93a1a1)
+    set -g c2 (set_color 268bd2)
+    set -g c3 (set_color 2aa198)
+    set -g c4 (set_color eee8d5)
+    set -g ce (set_color dc322f)
 
     # Clear the line because fish seems to emit the prompt twice. The initial
     # display, then when you press enter.
@@ -30,11 +30,11 @@ function fish_prompt
     # Current Directory & Hostname
     printf $c1
     printf "["
-    printf $c2
+    printf $c3
     printf $USER
     printf $c0
     printf "@"
-    printf $c2
+    printf $c1
     printf $hostname
     printf $c4
     printf " "
@@ -44,7 +44,9 @@ function fish_prompt
 
     # Current time
     printf " [$c0@"
-    printf (date "+$c2%H$c0:$c2%M$c0:$c2%S")
+    printf (date "+$c0%H$c0:$c0%M$c0:$c0%S")
+    printf " $c0!"
+    printf $last_status
     printf "$c1]\n"
 
     # Git branch and dirty files
@@ -53,9 +55,13 @@ function fish_prompt
     if set -q git_branch
         set out $git_branch
         if test $git_dirty_count -gt 0
-            set out "$out$c0:$git_dirty_count"
+            set out "$out$c0:$ce$git_dirty_count"
         end
-        printf "git@$out "
+        printf $c0
+        printf "git$c0@"
+        printf $c0
+        printf "$out "
     end
+    printf $c1
     printf "~> "
 end
