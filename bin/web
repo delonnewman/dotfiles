@@ -1,0 +1,69 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+
+use Cwd;
+use File::Spec;
+use File::Temp qw{ tempfile };
+
+my $BROWSER = $ENV{BROWSER};
+
+unless ( $BROWSER ) {
+    print "You must set your BROWSER environment variable\n",
+          "to the path of your prefered web browser.\n";
+
+    exit(0);
+}
+
+
+my $f = do {
+    if ( $ARGV[0] && -e $ARGV[0] ) {
+        # Absolute path
+        if ( $ARGV[0] =~ /^(\/|[A-Z]:\\)/ ) {
+            $ARGV[0];
+        }
+        # Relative path
+        else {
+            File::Spec->join(cwd, $ARGV[0]);
+        }
+	  }
+	  elsif ( $ARGV[0] && $ARGV[0] =~ /^http/ ) {
+		    $ARGV[0];
+    }
+	  else {
+        local $/ = undef; # slurp mode
+        my $input = <>;
+        my ($fh, $f) = tempfile(SUFFIX => '.html');
+        print $fh $input;
+        close $fh;
+        $f;
+    }
+};
+
+print "file: $f\n";
+system($BROWSER, $f);
+
+__END__
+
+=head1 NAME
+
+C<web> - A cross-platform script for passing content to your webrowser from the command-line
+
+=head1 SYNOPSIS
+
+    > web index.html # opens index.html in browser
+
+    > cat some.html | web # creates a temp file with contents and opens browser
+
+    > REM same as above on windows
+    > type some.html | web
+
+=head1 CONFIGURATION
+
+    The C<BROWSER> envrionment variable must be set to your prefered browser.
+
+=head1 AUTHOR
+
+Delon Newman L<delon.newman@gmail.com>
+
+=end

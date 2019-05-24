@@ -1,4 +1,4 @@
-set gfn=Consolas:h12
+set gfn=Fira\ Mono:h14
 set lines=40
 set guioptions-=T
 set guioptions-=mc

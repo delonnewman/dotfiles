@@ -1,85 +1,77 @@
 set nocompatible
 set encoding=utf-8
+filetype off
 
-" Pathogen
-call pathogen#infect()
+set shell=/bin/bash
 
 " Vundle
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " Bundles
 " General
-Bundle "gmarik/vundle"
-Bundle "tpope/vim-surround"
-"Bundle "mattn/webapi-vim"
-"Bundle "mattn/gist-vim"
-"Bundle "mattn/calendar-vim"
-Bundle "taglist.vim"
-Bundle "mileszs/ack.vim"
-Bundle "vimwiki"
-Bundle "altercation/vim-colors-solarized"
-Bundle "tpope/vim-vinegar"
-"Bundle "ledger/vim-ledger"
-Bundle "kien/ctrlp.vim"
-Bundle "tpope/vim-dispatch"
-Bundle "golden-ratio"
-Bundle "rizzatti/dash.vim"
-Bundle "ctrlpvim/ctrlp.vim"
-Bundle "vim-airline/vim-airline"
-Bundle "vim-airline/vim-airline-themes"
-Bundle "scrooloose/syntastic"
-Bundle "tpope/vim-projectionist"
-
-" CSV
-Bundle "csv.vim"
+Plugin 'tpope/vim-surround'
+Plugin 'taglist.vim'
+Plugin 'mileszs/ack.vim'
+Plugin 'vimwiki'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'tpope/vim-vinegar'
+Plugin 'tpope/vim-dispatch'
+Plugin 'golden-ratio'
+Plugin 'rizzatti/dash.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-projectionist'
 
 " Git
-Bundle "tpope/vim-fugitive"
-Bundle "airblade/vim-gitgutter"
+Plugin 'tpope/vim-fugitive'
+Plugin 'airblade/vim-gitgutter'
 
 " Perl
-Bundle "vim-perl/vim-perl"
+Plugin 'vim-perl/vim-perl'
 
 " Ruby
-Bundle "tpope/vim-rails"
-Bundle "tpope/vim-haml"
-Bundle "tpope/vim-bundler"
-Bundle "tpope/vim-rake"
-Bundle "vim-ruby/vim-ruby"
-Bundle "tpope/vim-endwise"
-Bundle "tpope/vim-rbenv"
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-haml'
+Plugin 'tpope/vim-bundler'
+Plugin 'tpope/vim-rake'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'tpope/vim-endwise'
 
 " Markdown
-Bundle "tpope/vim-markdown"
+Plugin 'tpope/vim-markdown'
 
 " Java/JVM
-Bundle "tpope/vim-classpath"
+"Plugin 'tpope/vim-classpath'
 
 " Clojure
-"Bundle "tpope/vim-fireplace"
-"Bundle "tpope/vim-leiningen"
-"Bundle "guns/vim-clojure-static"
-"Bundle "guns/vim-clojure-highlight"
+"Plugin "tpope/vim-fireplace"
+"Plugin "tpope/vim-leiningen"
+"Plugin "guns/vim-clojure-static"
+"Plugin "guns/vim-clojure-highlight"
 
 " Lisps
-Bundle "kien/rainbow_parentheses.vim"
-"Bundle "bhurlow/vim-parinfer"
+Plugin 'kien/rainbow_parentheses.vim'
+"Plugin "bhurlow/vim-parinfer"
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 " Racket
-"Bundle "scribble.vim"
-"Bundle "wlangstroth/vim-racket"
+"Plugin 'scribble.vim'
+"Plugin 'wlangstroth/vim-racket'
 
 " Prolog
-"Bundle "mndrix/prolog.vim"
+"Plugin 'mndrix/prolog.vim'
 
 " JavaScript, etc.
-Bundle "leafgarland/typescript-vim"
-Bundle "vim-coffee-script"
+Plugin 'leafgarland/typescript-vim'
+Plugin 'vim-coffee-script'
+
+call vundle#end()
 
 " General
 filetype on
