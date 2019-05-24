@@ -31,11 +31,14 @@ function fish_prompt
     printf $c1
     printf "["
     printf $c2
-    printf (echo $PWD | sed s!$HOME!\~!)
+    printf $USER
     printf $c0
     printf "@"
     printf $c2
     printf $hostname
+    printf $c4
+    printf " "
+    printf (echo $PWD | sed s!$HOME!\~!)
     printf $c1
     printf "]"
 
