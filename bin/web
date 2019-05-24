@@ -40,7 +40,7 @@ my $f = do {
     }
 };
 
-print "file: $f\n";
+print STDERR "Opening with $BROWSER: $f\n";
 system($BROWSER, $f);
 
 __END__

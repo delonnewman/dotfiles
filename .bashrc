@@ -11,11 +11,11 @@ shopt -s dotglob
 # Envorionment Variables
 #
 export PROJECTS=$HOME/Projects
-export PATH="$PATH:$HOME/bin:/c/MinGW/bin:/c/msys32/usr/bin"
+export PATH="$PATH:$HOME/bin"
 export CDPATH=.:~:/media:/:/etc/:/var:/usr
 export HISTIGNORE="&:ls:[bf]g:exit"
 export EDITOR=vim
-#export BROWSER=open
+export BROWSER=open
 export GITHUB=https://delonnewman@github.com/delonnewman
 export GITHUB_USER=delonnewman
 
@@ -42,12 +42,12 @@ alias edit=$EDITOR
 #
 
 # for project specific modifications
-if [ $(pwd) != $HOME ]; then
-  context="$(pwd)/.bashrc"
-  if [ -e $context ]; then
-    source "$(pwd)/.bashrc"
-  fi
-fi
+#if [ $(pwd) != $HOME ]; then
+#  context="$(pwd)/.bashrc"
+#  if [ -e $context ]; then
+#    source "$(pwd)/.bashrc"
+#  fi
+#fi
 
 source "$HOME/.bash/web.bash"
 source "$HOME/.bash/git.bash"
@@ -55,17 +55,6 @@ source "$HOME/.bash/colors.bash"
 source "$HOME/.bash/themes.bash"
 source "$HOME/.bash/prompt.bash"
 
-function progress {
-    cmd=$1
-    printf "[%60s] 0\045\r" " "
-    for ((i=1;i<=10;i++)) {
-       $($cmd)
-       printf "[%60s] $((i*10))\045\r" " "
-       printf "[%$((i*6))s\r" " " | tr ' ' '#'
-    }
-    echo -e "\nDone."
-}
-\
 #
 # Prompt Customization
 #
@@ -89,9 +78,6 @@ load-prompt
 
 #export NVM_DIR="/Users/cherub/.nvm"
 #[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"

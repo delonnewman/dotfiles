@@ -24,6 +24,7 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-projectionist'
+Plugin 'dag/vim-fish'
 
 " Git
 Plugin 'tpope/vim-fugitive'

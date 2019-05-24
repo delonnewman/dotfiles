@@ -27,15 +27,17 @@ function fish_prompt
     # display, then when you press enter.
     printf "\033[K"
 
-    # Current Directory
-    # 1st sed for colourising forward slashes
-    # 2nd sed for colourising the deepest path (the 'm' is the last char in the
-    # ANSI colour code that needs to be stripped)
+    # Current Directory & Hostname
     printf $c1
     printf "["
+    printf $c2
+    printf (echo $PWD | sed s!$HOME!\~!)
+    printf $c0
+    printf "@"
+    printf $c2
+    printf $hostname
     printf $c1
-    printf (pwd | sed "s,/,$c0/$c1,g" | sed "s,\(.*\)/[^m]*m,\1/$c3,")
-    printf "$c1]"
+    printf "]"
 
     # Current time
     printf " [$c0@"

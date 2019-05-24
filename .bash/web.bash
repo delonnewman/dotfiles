@@ -1,26 +1,12 @@
 # web.bash
 
-alias web=open
-
 GOOGLE="https://encrypted.google.com/search?hl=en&q="
 DDG="https://duckduckgo.com/?q="
 MCPAN="https://metacpan.org/search?q="
 CPAN="http://search.cpan.org/search?q="
 
 function url-encode {
-  perl -MURL::Encode -e "print URL::Encode::url_encode(\"$@\")"
-}
-
-function dash {
-    USAGE="Usage: dash QUERY"
-
-    if [ -z "$@" ]; then
-    echo $USAGE
-    else
-        q=$@
-        q=${q// /+}
-        open "dash://$q"
-    fi
+  echo "$@" | perl -e "s/\s+/%20/g; print"
 }
 
 function google {
@@ -72,7 +58,7 @@ function ddg {
 }
 
 function rubydoc {
-    USAGE="Usage: ruby-doc QUERY" 
+    USAGE="Usage: rubydoc QUERY" 
 
     if [ -z "$@" ]; then
     echo $USAGE
