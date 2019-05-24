@@ -35,7 +35,7 @@ function fish_prompt
     printf $c0
     printf "@"
     printf $c1
-    printf $hostname
+    printf (hostname -s)
     printf $c4
     printf " "
     printf (echo $PWD | sed s!$HOME!\~!)
