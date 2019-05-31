@@ -1,0 +1,14 @@
+.bash
+.bash_history
+.bash_profile
+.bashrc
+.config
+.emacs
+.emacs.d
+.gitconfig
+.gvimrc
+.minttyrc
+.profile
+.vim
+.vimrc
+bin

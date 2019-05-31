@@ -142,11 +142,14 @@ set smarttab
 " Python indent
 au FileType python setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
 
+" JS
+au FileType javascript setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
+
+" Perl
+au FileType perl setlocal tabstop=4 expandtab shiftwidth=4 softtabstop=4
+
 " Boot files
 au BufRead *.boot set filetype=clojure
-
-" WonderScript files
-au BufRead *.ws set filetype=clojure
 
 " Fish Shell
 au BufRead *.fish set filetype=sh
