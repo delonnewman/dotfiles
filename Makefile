@@ -20,7 +20,7 @@ copy-files:
 show-files:
 	@echo $(DOTFILES)
 
-vim-setup:
+vim-setup: $(VUNDLE_PATH)
 	vim +PluginInstall +qall
 
 $(VUNDLE_PATH):
@@ -52,8 +52,10 @@ upgrade-mac-tools:
 
 
 help:
-	@echo "NAME - Dotfiles Makefile"
-	@echo "========================"
+	@echo "NAME"
+	@echo "===="
+	@echo
+	@echo "Dotfiles - Makefile"
 	@echo
 	@echo "SYNOPSIS"
 	@echo "========"

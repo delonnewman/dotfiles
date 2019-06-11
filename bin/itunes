@@ -1,0 +1,157 @@
+#!/bin/sh
+#
+####################################
+# iTunes Command Line Control v1.0
+# written by David Schlosnagle
+# created 2001.11.08
+# @edited Mateusz Gachowski
+####################################
+
+showHelp () {
+    echo "-----------------------------";
+    echo "iTunes Command Line Interface";
+    echo "-----------------------------";
+    echo "Usage: `basename $0` <option>";
+    echo;
+    echo "Options:";
+    echo " status   = Shows iTunes' status, current artist and track.";
+    echo " start    = Starts iTunes' if not yet running.";
+    echo " play     = Start playing iTunes.";
+    echo " pause    = Pause iTunes.";
+    echo " next     = Go to the next track.";
+    echo " prev     = Go to the previous track.";
+    echo " mute     = Mute iTunes' volume.";
+    echo " unmute   = Unmute iTunes' volume.";
+    echo " vol #    = Set iTunes' volume to # [0-100]";
+    echo " albums   = Shows the list of albums with IDs";
+    echo " search   = Search for a given album name and tries to play it";
+    echo " stop     = Stop iTunes.";
+    echo " quit     = Quit iTunes.";
+}
+
+if [ $# = 0 ]; then
+    showHelp;
+fi
+
+while [ $# -gt 0 ]; do
+    arg=$1;
+    case $arg in
+        "status" ) state=`osascript -e 'tell application "iTunes" to player state as string'`;
+            echo "iTunes is currently $state.";
+            if [ $state = "playing" ]; then
+                artist=`osascript -e 'tell application "iTunes" to artist of current track as string'`;
+                track=`osascript -e 'tell application "iTunes" to name of current track as string'`;
+                echo "Current track $artist:  $track";
+                echo;
+                tracks=`osascript -e 'tell application "iTunes" to get name of every track in current playlist'`;
+                export IFS=','
+                for t in ${tracks[@]}; do
+                    echo "$t";
+                done
+            fi
+            break ;;
+        'start' ) echo 'Launching iTunes'
+            osascript -e 'tell application "iTunes" to launch';
+            break;;
+        "play"    ) echo "Playing iTunes.";
+            osascript -e 'tell application "iTunes" to play';
+            break ;;
+
+        "pause"    ) echo "Pausing iTunes.";
+            osascript -e 'tell application "iTunes" to pause';
+            break ;;
+
+        "next"    ) echo "Going to next track." ;
+            osascript -e 'tell application "iTunes" to next track';
+            break ;;
+
+        "prev"    ) echo "Going to previous track.";
+            osascript -e 'tell application "iTunes" to previous track';
+            break ;;
+
+        "mute"    ) echo "Muting iTunes volume level.";
+            osascript -e 'tell application "iTunes" to set mute to true';
+            break ;;
+
+        "unmute" ) echo "Unmuting iTunes volume level.";
+            osascript -e 'tell application "iTunes" to set mute to false';
+            break ;;
+
+        "vol"    ) echo "Changing iTunes volume level.";
+            if [ $2 -gt 0 ]; then
+                newvol=$2;
+            fi
+            osascript -e "tell application \"iTunes\" to set sound volume to $newvol";
+            break ;;
+
+        "albums" )
+            id=`osascript -e "tell application \"iTunes\" to (get database ID of every track in playlist \"Library\")"`
+            album=`osascript -e "tell application \"iTunes\" to (get album of every track in playlist \"Library\")"`
+
+            #split IDs based on ','
+            export IFS=","
+
+            #get database ID of tracks
+            i=0
+            for id in $id
+            do
+            id_a[$i]=`echo $id`
+            i=$((i+1))
+            done
+
+            echo "Total number of songs in current playlist:" ${#id_a[@]}
+            echo "\tFor every album in DB, display album name and first track ID of album."
+
+            #disable separator
+            export IFS=""
+
+            ALBUM=( )
+            for (( i = 0 ; i < ${#id_a[@]} ; i++ ))
+            do
+            NEW_ALBUM=`osascript -e "tell application \"iTunes\" to get album of (every track where database ID is ${id_a[$i]})"`
+            if [ ${#ALBUM[@]} -eq 0 ]; then
+
+                ALBUM=( "${ALBUM[@]}" "$NEW_ALBUM" )
+
+            else
+
+                MARK=1
+
+                for j in ${ALBUM[@]}; do 
+
+                if [[ $j == "$NEW_ALBUM" ]] ; then 
+                    MARK=0
+                    break
+                fi
+
+                done
+
+                if [ $MARK -ne 0 ]; then
+                ALBUM=( "${ALBUM[@]}" "$NEW_ALBUM" )
+                echo ${id_a[$i]} $NEW_ALBUM
+                fi
+
+            fi
+            done
+
+            break;;
+
+        "search"  ) echo 'Searching albums...';
+            if [ $# -eq 2 ]; then
+                osascript -e 'tell application "iTunes"' -e 'if (exists playlist "temp_playlist") then' -e 'delete playlist "temp_playlist"' -e 'end if' -e 'set name of (make new playlist) to "temp_playlist"' -e 'set theseTracks to every track of playlist "Library" whose artist contains "'"$2"'"' -e 'repeat with thisTrack in theseTracks' -e 'duplicate thisTrack to playlist "temp_playlist"' -e 'end repeat' -e 'set theseTracks to every track of playlist "Library" whose album contains "'"$2"'"' -e 'repeat with thisTrack in theseTracks' -e 'duplicate thisTrack to playlist "temp_playlist"' -e 'end repeat' -e 'set theseTracks to every track of playlist "Library" whose name contains "'"$2"'"' -e 'repeat with thisTrack in theseTracks' -e 'duplicate thisTrack to playlist "temp_playlist"' -e 'end repeat' -e 'play playlist "temp_playlist"' -e 'end tell'
+            fi
+            break;;
+
+        "stop"    ) echo "Stopping iTunes.";
+            osascript -e 'tell application "iTunes" to stop';
+            break ;;
+            
+        "quit"    ) echo "Quitting iTunes.";
+            osascript -e 'tell application "iTunes" to quit';
+            exit 1 ;;
+
+        "help" | * ) echo "help:";
+            showHelp;
+            break ;;
+    esac
+done

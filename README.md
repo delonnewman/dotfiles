@@ -1,5 +1,7 @@
-NAME - Dotfiles Makefile
-========================
+NAME
+====
+
+Dotfiles - Makefile
 
 SYNOPSIS
 ========
