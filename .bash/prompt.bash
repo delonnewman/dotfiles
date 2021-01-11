@@ -24,7 +24,7 @@ function load-prompt {
   fi
   
   # and here's the prompt
-  PS1="$C2[$C4\u@\h$C3:$C5\w$C2] [$C3!$C4\! $C3@$C4$(get-time)$C4 $C3&$C4\j$C2]\n$C2[$C3\$(git-branch)$C4\$$C2>$C5 "
+  PS1="$C2[$C4\u@\h$C3:$C5\w$C2] [$C3!$C4\! $C3@$C4$(get-time)$C4 $C3&$C4\j$C2]\n$C2[$C3\$(git-branch)\$(ruby-version)$C4\$$C2>$C5 "
   PS2=" $C3|$C5 "
   PS4=" $C3+$C5 "
 }

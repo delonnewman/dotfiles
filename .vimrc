@@ -14,7 +14,6 @@ Plugin 'tpope/vim-surround'
 Plugin 'taglist.vim'
 Plugin 'mileszs/ack.vim'
 Plugin 'vimwiki'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'tpope/vim-vinegar'
 Plugin 'tpope/vim-dispatch'
 Plugin 'golden-ratio'
@@ -25,6 +24,11 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-projectionist'
 Plugin 'dag/vim-fish'
+
+" ColorSchemes
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'arcticicestudio/nord-vim'
+
 
 " Git
 Plugin 'tpope/vim-fugitive'
