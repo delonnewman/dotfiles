@@ -14,11 +14,11 @@ set -o vi
 # Envorionment Variables
 #
 export PROJECTS=$HOME/Projects
-export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/bin:$HOME/Library/Python/3.9/bin:/usr/local/Cellar/rakudo/2020.08/share/perl6/site/bin"
 export CDPATH=.:~:/media:/:/etc/:/var:/usr
 export HISTIGNORE="&:ls:[bf]g:exit"
-export EDITOR=vim
-export BROWSER=firefox
+export EDITOR="emacsclient -a emacs"
+export BROWSER='open -a "Firefox Developer Edition"'
 export GITHUB=https://delonnewman@github.com/delonnewman
 export GITHUB_USER=delonnewman
 
@@ -54,21 +54,15 @@ fi
 
 source "$HOME/.bash/web.bash"
 source "$HOME/.bash/git.bash"
-source "$HOME/.bash/ruby.bash"
 source "$HOME/.bash/colors.bash"
 source "$HOME/.bash/themes.bash"
 source "$HOME/.bash/prompt.bash"
 
-# guix
-GUIX_PROFILE="$HOME/.guix-profile"
-source "$GUIX_PROFILE/etc/profile"
-
-# deno
-DENO_INSTALL="$HOME/.deno"
-export PATH="$PATH:$DENO_INSTALL/bin"
-
-# cargo
-source "$HOME/.cargo/env"
+source "$HOME/.bash/heroku.bash"
+source "$HOME/.bash/macos.bash"
+source "$HOME/.bash/postgres.bash"
+source "$HOME/.bash/ruby.bash"
+source "$HOME/.bash/mongo.bash"
 
 #
 # Prompt Customization
@@ -76,8 +70,6 @@ source "$HOME/.cargo/env"
 shell-theme solarized
 load-prompt
 
-# load perlbrew
-#[[ -s "$HOME/perl5/perlbrew/etc/bashrc" ]] && source "$HOME/perl5/perlbrew/etc/bashrc"
-
-# plenv
-#if which plenv > /dev/null; then eval "$(plenv init -)"; fi
+# asdf
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash

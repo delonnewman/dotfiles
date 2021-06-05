@@ -1,0 +1,9 @@
+rake
+rspec
+bundler
+rack
+yard
+sequel
+dotenv
+guard
+procman
