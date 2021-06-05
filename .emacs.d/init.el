@@ -34,7 +34,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(cider markdown-mode tide js2-mode counsel yaml-mode yari web-mode typescript-mode rake projectile popup magit lv jump inf-ruby evil company color-theme-solarized async)))
+   '(swift-mode cider markdown-mode tide js2-mode counsel yaml-mode yari web-mode typescript-mode rake projectile popup magit lv jump inf-ruby evil company color-theme-solarized async)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -49,7 +49,10 @@
 
 ;; Add elisp dir
 (add-to-list 'load-path "~/.emacs.d/elisp")
-(require 'fira-code-mode)
+
+;; Fira Code ligatures
+;(require 'fira-code-mode)
+;(add-hook 'prog-mode-hook #'fira-code-mode)
 
 ;; font
 (set-face-attribute 'default nil :font "Fira Code-14")
@@ -72,7 +75,12 @@
 
 ;; Counsel / Ivy
 ;(global-set-key (kbd "M-x") 'counsel-M-x)
+(unless (package-installed-p 'counsel)
+  (package-install 'counsel))
 (ivy-mode 1)
+
+(unless (package-installed-p 'magit)
+  (package-install 'magit))
 
 ;; Projectile
 (unless (package-installed-p 'projectile)
@@ -106,7 +114,20 @@
   (package-install 'flycheck))
 (global-flycheck-mode)
 
+;; Swift
+(unless (package-installed-p 'swift-mode)
+  (package-install 'swift-mode))
+
+(unless (package-installed-p 'flycheck-swift)
+  (package-install 'flycheck-swift))
+
+;; Clojure
+(unless (package-installed-p 'cider)
+  (package-install 'cider))
+
 ;; Web Mode
+(unless (package-installed-p 'web-mode)
+  (package-install 'web-mode))
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 

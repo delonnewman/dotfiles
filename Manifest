@@ -3,7 +3,6 @@
 .bash_profile
 .bashrc
 .config
-.emacs
 .emacs.d
 .gitconfig
 .gvimrc
