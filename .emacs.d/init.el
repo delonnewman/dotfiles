@@ -27,7 +27,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(tide js2-mode counsel yaml-mode yari web-mode typescript-mode rake projectile popup magit lv jump inf-ruby evil company color-theme-solarized async)))
+   '(cider markdown-mode tide js2-mode counsel yaml-mode yari web-mode typescript-mode rake projectile popup magit lv jump inf-ruby evil company color-theme-solarized async)))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
