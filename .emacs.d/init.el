@@ -45,7 +45,7 @@
 
 ;; Homebrew
 (setq exec-path (append exec-path (list "/usr/local/bin")))
-(setenv "PATH" (concat (getenv "PATH") "/usr/local/bin:"))
+(setenv "PATH" (concat (getenv "PATH") ":/usr/local/bin"))
 
 ;; Add elisp dir
 (add-to-list 'load-path "~/.emacs.d/elisp")
