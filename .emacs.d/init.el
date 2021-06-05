@@ -24,6 +24,10 @@
 ;; No tabs
 (setq-default indent-tabs-mode nil)
 
+;; Default frame size
+(add-to-list 'default-frame-alist '(height . 100))
+(add-to-list 'default-frame-alist '(width . 100))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
