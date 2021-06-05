@@ -1,13 +1,16 @@
-cask 'macvim'
+cask 'emacs'
 cask 'iterm2'
-cask 'intellij-idea'
 cask 'firefox-developer-edition'
-cask 'slack'
-cask 'amethyst'
 
-brew 'tig'
+#cask 'macvim'
+#cask 'intellij-idea'
+#cask 'slack'
+#cask 'amethyst'
+
+#brew 'tig'
+#brew 'fish'
+
 brew 'htop'
-brew 'fish'
 brew 'tree'
 brew 'sqlite3'
 
